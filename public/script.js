@@ -318,9 +318,12 @@ selectSha256Mode.addEventListener('change', () => {
 // hashing
 const sha256HashForm = document.getElementById('sha256HashForm');
 const sha256FileInput = document.getElementById('sha256FileInput');
-
+const sha256VerifyMessage = document.getElementById('sha256VerifyMessage');
+const sha256HashMessage = document.getElementById('sha256HashMessage');
 sha256HashForm.addEventListener('submit', async (e) => {
   e.preventDefault();
+  sha256HashMessage.style.display = 'block';
+  sha256HashMessage.textContent = 'Processing...';
 
   const formData = new FormData();
   formData.append('file', sha256FileInput.files[0]);
@@ -343,6 +346,7 @@ sha256HashForm.addEventListener('submit', async (e) => {
     const response = await fetch(url, options);
     if (!response.ok) throw new Error('Network response was not ok');
     const data = await response.json();
+    sha256HashMessage.textContent = data.message;
 
     // display hash
     sha256Output.value = data.computedHash || 'No hash returned';
@@ -385,6 +389,8 @@ const verifyFileInput = document.getElementById('verifyFileInput');
 
 sha256VerifyForm.addEventListener('submit', async (e) => {
   e.preventDefault();
+  sha256VerifyMessage.style.display = 'block';
+  sha256VerifyMessage.textContent = 'Processing...';
 
   let url, options;
 
@@ -414,7 +420,7 @@ sha256VerifyForm.addEventListener('submit', async (e) => {
     const response = await fetch(url, options);
     if (!response.ok) throw new Error('Network response was not ok');
     const data = await response.json();
-
+    sha256VerifyMessage.textContent = data.message;
     verifyOutput.value = data.valid ? data.message : 'Hash does not match';
   } catch (err) {
     verifyOutput.value = `Error: ${err.message}`;
