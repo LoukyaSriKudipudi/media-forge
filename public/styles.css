@@ -1,0 +1,378 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  max-width: 720px;
+  width: 92vw;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+  background: #f3f4f6;
+  color: #111827;
+  line-height: 1.5;
+  padding-bottom: 4rem;
+}
+
+/* Header */
+header {
+  position: relative;
+  margin-top: 2rem;
+  background: linear-gradient(135deg, #4c6ef5, #5c7cfa);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(76, 110, 245, 0.25);
+}
+
+header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+@media (orientation: portrait) {
+  header p {
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+  }
+}
+@media (orientation: portrait) {
+  header h1 {
+    font-size: 1.2rem;
+  }
+}
+
+/* Card-like Forms */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease;
+}
+
+section {
+  scroll-margin-top: 2rem;
+}
+
+form:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+form h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #4c6ef5;
+}
+
+/* Labels */
+label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* File Input */
+input[type='file']::file-selector-button {
+  background: #e9ecef;
+  border: 1px solid #4c6ef5;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+input[type='file']::file-selector-button:hover {
+  background: #dee2e6;
+}
+
+/* Text & Password Inputs */
+input[type='text'],
+input[type='password'] {
+  width: 100%;
+  padding: 0.65rem 2.5rem;
+  font-size: 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  outline: none;
+  background: #f9fafb;
+  transition: all 0.2s ease;
+}
+
+textarea {
+  width: 100%;
+  padding: 0.65rem 0.65rem;
+  font-size: 0.9rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  outline: none;
+  background: #f9fafb;
+  transition: all 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #4c6ef5;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(76, 110, 245, 0.2);
+}
+
+/* Textarea */
+textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+}
+
+/* Small Notes */
+small {
+  font-size: 0.8rem;
+  color: #6b7280;
+  opacity: 0.8;
+}
+
+/* Buttons */
+form button {
+  padding: 0.65rem 1.25rem;
+  background: #4c6ef5;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+form button:hover {
+  background: #364fc7;
+}
+
+form button:active {
+  transform: scale(0.97);
+}
+
+/* Links */
+a.download-link {
+  font-size: 0.85rem;
+  color: #4c6ef5;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a.download-link:hover {
+  color: #364fc7;
+  text-decoration: underline;
+}
+
+/* Icon Input Wrapper */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-wrapper svg {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+/* Copy Button */
+.copy-btn {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #6b7280;
+  transition: color 0.2s ease;
+}
+
+.copy-btn:hover {
+  color: #111827;
+}
+
+/* metadata */
+
+#metadataCard,
+#downloadCard {
+  margin-top: 2rem;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.metaDataButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media (max-width: 750px) {
+  .metaDataButtons {
+    gap: 1rem;
+  }
+}
+#metadata-tool h2 {
+  color: #4c6ef5;
+  font-size: 1.2rem;
+}
+
+#metadataCard pre {
+  background: #1e293b;
+  color: #f8fafc;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  max-height: 300px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+}
+
+#copyMetadataBtn {
+  margin-top: 0.5rem;
+  background: #f8f9fa;
+  border: 1px solid #4c6ef5;
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+}
+
+#copyMetadataBtn:hover {
+  background: #edf2ff;
+}
+
+.hidden {
+  display: none;
+}
+
+#fileDownloadLink,
+#fileEncryptionMessage,
+#textEncryptionMessage,
+#bcryptMessage,
+#metaDataMessage {
+  font-size: 0.8rem;
+}
+
+select {
+  appearance: none;
+  padding: 8px 12px;
+  border: 1px solid #364fc7;
+  border-radius: 0.5rem;
+  outline: none;
+  background: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>')
+    no-repeat right 10px center;
+  background-color: #fff;
+  background-size: 1.5rem;
+}
+
+header nav ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  text-align: center;
+  border-radius: 0.5rem;
+}
+
+header nav ul li a:hover {
+  color: #007bff;
+}
+
+#hamburgerBtn {
+  display: none;
+}
+
+/* Mobile responsiveness with smooth menu */
+@media (max-width: 600px) {
+  #hamburgerBtn {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #fff;
+  }
+
+  #mainNav {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 1rem;
+    background: #f9f9f9;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border-radius: 0.5rem;
+    width: 100%;
+    padding: 0 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+  }
+
+  #mainNav.active {
+    max-height: max-content;
+    opacity: 1;
+    padding: 1rem;
+  }
+
+  header nav ul {
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+
+  header nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    background-color: #fff;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    text-align: center;
+    border-radius: 0.5rem;
+  }
+}

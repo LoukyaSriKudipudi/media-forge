@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Media Forge</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Media Forge</h1>
+      <p>
+        Encrypt files and text, hash secrets, and read or remove metadata
+        easily.
+      </p>
+
+      <button id="hamburgerBtn" aria-label="Toggle Menu">☰</button>
+
+      <nav id="mainNav">
+        <ul>
+          <li><a href="#file-encryption">File Encryption</a></li>
+          <li><a href="#text-encryption">Text Encryption</a></li>
+          <li><a href="#bcrypt-hashing">Secret Hashing</a></li>
+          <li><a href="#bcrypt-compare">Compare Secret</a></li>
+          <li><a href="#metadata-tool">Metadata Tool</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- File Encryption -->
+    <section id="file-encryption">
+      <form id="fileEncryptionForm" enctype="multipart/form-data">
+        <h2>File Encryption & Decryption</h2>
+        <small>Encrypt any file using AES-256-GCM.</small>
+
+        <label for="fileInput">Upload File</label>
+        <input type="file" id="fileInput" name="fileInput" />
+
+        <div
+          class="input-wrapper"
+          style="position: relative; display: inline-block"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            width="1rem"
+            style="
+              position: absolute;
+              top: 50%;
+              left: 8px;
+              transform: translateY(-50%);
+              color: #888;
+              pointer-events: none;
+            "
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 7a5 5 0 1 1 3.61 4.804l-1.903 1.903A1 1 0 0 1 9 14H8v1a1 1 0 0 1-1 1H6v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2a1 1 0 0 1 .293-.707L8.196 8.39A5.002 5.002 0 0 1 8 7Zm5-3a.75.75 0 0 0 0 1.5A1.5 1.5 0 0 1 14.5 7 .75.75 0 0 0 16 7a3 3 0 0 0-3-3Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <input
+            type="text"
+            id="fileKeyInput"
+            name="fileKeyInput"
+            placeholder="Enter key"
+          />
+        </div>
+
+        <select name="selectFileMode" id="selectFileMode">
+          <option value="encryption">Encryption</option>
+          <option value="decryption">Decryption</option>
+        </select>
+
+        <button type="submit">Submit</button>
+        <p class="hidden" id="fileEncryptionMessage"></p>
+        <a class="hidden" id="fileDownloadLink" href="#"
+          >Download Encrypted File</a
+        >
+      </form>
+    </section>
+
+    <!-- Text Encryption -->
+    <section id="text-encryption">
+      <form id="textEncryptionForm">
+        <h2>Text Encryption & Decryption</h2>
+        <small>Encrypt any text using AES-256-GCM.</small>
+
+        <div style="display: inline-block; position: relative">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            width="16px"
+            style="
+              position: absolute;
+              top: 50%;
+              left: 8px;
+              transform: translateY(-50%);
+              color: #888;
+            "
+          >
+            <path
+              d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z"
+            />
+            <path
+              d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z"
+            />
+          </svg>
+          <input
+            type="text"
+            id="textInput"
+            name="textInput"
+            placeholder="Enter text here"
+          />
+        </div>
+
+        <div
+          class="input-wrapper"
+          style="position: relative; display: inline-block"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            width="1rem"
+            style="
+              position: absolute;
+              top: 50%;
+              left: 8px;
+              transform: translateY(-50%);
+              color: #888;
+              pointer-events: none;
+            "
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 7a5 5 0 1 1 3.61 4.804l-1.903 1.903A1 1 0 0 1 9 14H8v1a1 1 0 0 1-1 1H6v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2a1 1 0 0 1 .293-.707L8.196 8.39A5.002 5.002 0 0 1 8 7Zm5-3a.75.75 0 0 0 0 1.5A1.5 1.5 0 0 1 14.5 7 .75.75 0 0 0 16 7a3 3 0 0 0-3-3Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <input
+            type="text"
+            id="textKeyInput"
+            name="textKeyInput"
+            placeholder="Enter key"
+          />
+        </div>
+
+        <select name="selectTextMode" id="selectTextMode">
+          <option value="encryption">Encryption</option>
+          <option value="decryption">Decryption</option>
+        </select>
+
+        <button type="submit">Submit</button>
+        <p class="hidden" id="textEncryptionMessage"></p>
+
+        <div style="display: inline-block; position: relative">
+          <label for="textOutput">Output</label>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            id="copyTextOutputBtn"
+            fill="currentColor"
+            width="16px"
+            style="
+              position: absolute;
+              top: 50%;
+              right: 8px;
+              transform: translateY(-50%);
+              color: #4e4e4e;
+              cursor: pointer;
+            "
+          >
+            <path
+              fill-rule="evenodd"
+              d="M13.887 3.182c.396.037.79.08 1.183.128C16.194 3.45 17 4.414 17 5.517V16.75A2.25 2.25 0 0 1 14.75 19h-9.5A2.25 2.25 0 0 1 3 16.75V5.517c0-1.103.806-2.068 1.93-2.207.393-.048.787-.09 1.183-.128A3.001 3.001 0 0 1 9 1h2c1.373 0 2.531.923 2.887 2.182ZM7.5 4A1.5 1.5 0 0 1 9 2.5h2A1.5 1.5 0 0 1 12.5 4v.5h-5V4Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <textarea id="textOutput">Output will appear here...</textarea>
+        </div>
+      </form>
+    </section>
+
+    <!-- Secret Hashing (bcrypt) -->
+    <section id="bcrypt-hashing">
+      <form id="bcryptHashForm">
+        <h2>Secret Hashing (bcrypt)</h2>
+        <small>Hash any secret securely using bcrypt.</small>
+
+        <div style="display: inline-block; position: relative">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            id="toggleSecretVisibility"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="
+              position: absolute;
+              top: 50%;
+              left: 8px;
+              transform: translateY(-50%);
+              width: 16px;
+              cursor: pointer;
+              color: #666;
+            "
+          >
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+          <input
+            type="password"
+            id="secretInput"
+            name="secretInput"
+            placeholder="Enter secret"
+          />
+        </div>
+
+        <button type="submit">Hash</button>
+        <p class="hidden" id="bcryptMessage">Hashed secret successfully.</p>
+
+        <div style="display: inline-block; position: relative">
+          <label for="bcryptOutput">Hashed Secret</label>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            id="copyBcryptOutputBtn"
+            fill="currentColor"
+            width="16px"
+            style="
+              position: absolute;
+              top: 50%;
+              right: 8px;
+              transform: translateY(-50%);
+              color: #4e4e4e;
+              cursor: pointer;
+            "
+          >
+            <path
+              fill-rule="evenodd"
+              d="M13.887 3.182c.396.037.79.08 1.183.128C16.194 3.45 17 4.414 17 5.517V16.75A2.25 2.25 0 0 1 14.75 19h-9.5A2.25 2.25 0 0 1 3 16.75V5.517c0-1.103.806-2.068 1.93-2.207.393-.048.787-.09 1.183-.128A3.001 3.001 0 0 1 9 1h2c1.373 0 2.531.923 2.887 2.182ZM7.5 4A1.5 1.5 0 0 1 9 2.5h2A1.5 1.5 0 0 1 12.5 4v.5h-5V4Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <textarea id="bcryptOutput">
+Hashed secret will appear here...</textarea
+          >
+        </div>
+      </form>
+    </section>
+
+    <!-- bcrypt compare section -->
+    <section id="bcrypt-compare" style="margin-top: 1.5rem">
+      <form id="bcryptCompareForm" aria-label="Compare secret with bcrypt hash">
+        <h2>Compare Secret with bcrypt Hash</h2>
+        <!-- secret input with visibility toggle -->
+        <div style="display: inline-block; position: relative">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            id="compareToggleSecret"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="
+              position: absolute;
+              top: 50%;
+              left: 8px;
+              transform: translateY(-50%);
+              width: 16px;
+              cursor: pointer;
+              color: #666;
+            "
+          >
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+          <input
+            type="password"
+            id="compareSecretInput"
+            name="secretInput"
+            placeholder="Enter secret"
+          />
+        </div>
+        <div style="display: inline-block; position: relative">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            id="pasteCompareHashBtn"
+            fill="currentColor"
+            width="16px"
+            style="
+              position: absolute;
+              top: 50%;
+              left: 8px;
+              transform: translateY(-50%);
+              color: #4e4e4e;
+              cursor: pointer;
+            "
+          >
+            <path
+              fill-rule="evenodd"
+              d="M13.887 3.182c.396.037.79.08 1.183.128C16.194 3.45 17 4.414 17 5.517V16.75A2.25 2.25 0 0 1 14.75 19h-9.5A2.25 2.25 0 0 1 3 16.75V5.517c0-1.103.806-2.068 1.93-2.207.393-.048.787-.09 1.183-.128A3.001 3.001 0 0 1 9 1h2c1.373 0 2.531.923 2.887 2.182ZM7.5 4A1.5 1.5 0 0 1 9 2.5h2A1.5 1.5 0 0 1 12.5 4v.5h-5V4Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <input
+            type="text"
+            id="compareHashInput"
+            name="compareHash"
+            placeholder="Paste bcrypt hash here"
+          />
+        </div>
+        <button type="submit" id="compareBtn" title="Compare secret and hash">
+          Compare
+        </button>
+        <div class="input-wrapper" style="margin-top: 0.75rem">
+          <label
+            for="compareResult"
+            style="
+              display: block;
+              margin-bottom: 0.25rem;
+              font-size: 0.85rem;
+              color: #374151;
+            "
+            >Result</label
+          >
+          <textarea id="compareResult" readonly aria-live="polite">
+ No comparison performed yet</textarea
+          >
+        </div>
+      </form>
+    </section>
+    <!-- Metadata Tool -->
+    <section id="metadata-tool">
+      <form id="metadataForm" enctype="multipart/form-data">
+        <h2>Metadata Tool</h2>
+        <small>Read or remove metadata of any file.</small>
+
+        <label for="metadataFileInput">Upload file</label>
+        <input type="file" id="metadataFileInput" name="metadataFileInput" />
+        <p class="hidden" id="metaDataMessage"></p>
+
+        <div class="metaDataButtons">
+          <button type="button" id="viewMetaBtn">View Metadata</button>
+          <button type="button" id="removeMetaBtn">Remove Metadata</button>
+        </div>
+      </form>
+
+      <div id="metadataCard" class="hidden">
+        <h3>Metadata</h3>
+        <pre id="metadataOutput"></pre>
+        <button type="button" id="copyMetadataBtn">Copy Metadata</button>
+      </div>
+
+      <div id="downloadCard" class="hidden">
+        <h3>Download File</h3>
+        <a href="#" id="downloadLink" class="download-link"
+          >Download no-meta file</a
+        >
+      </div>
+    </section>
+
+    <script>
+      // Toggle secret visibility
+      const secretInput = document.getElementById('secretInput');
+      const toggleSecretVisibility = document.getElementById(
+        'toggleSecretVisibility'
+      );
+      toggleSecretVisibility.addEventListener('click', () => {
+        const type =
+          secretInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        secretInput.setAttribute('type', type);
+      });
+
+      // Copy bcrypt output
+      const copyBcryptOutputBtn = document.getElementById(
+        'copyBcryptOutputBtn'
+      );
+      const bcryptOutput = document.getElementById('bcryptOutput');
+      copyBcryptOutputBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(bcryptOutput.value);
+        const original = bcryptOutput.value;
+        bcryptOutput.value = 'Copied!';
+        setTimeout(() => (bcryptOutput.value = original), 1000);
+      });
+
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const mainNav = document.getElementById('mainNav');
+
+      hamburgerBtn.addEventListener('click', () => {
+        mainNav.classList.toggle('active');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!mainNav.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+          mainNav.classList.toggle('active');
+        }
+      });
+
+      const navLinks = document.querySelectorAll('#mainNav a');
+
+      navLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          mainNav.classList.remove('active'); // triggers CSS transition
+        });
+      });
+    </script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
