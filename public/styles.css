@@ -272,7 +272,9 @@ a.download-link:hover {
 #fileEncryptionMessage,
 #textEncryptionMessage,
 #bcryptMessage,
-#metaDataMessage {
+#metaDataMessage,
+#sha256HashMessage,
+#sha256VerifyMessage {
   font-size: 0.8rem;
 }
 
