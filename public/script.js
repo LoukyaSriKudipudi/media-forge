@@ -296,3 +296,147 @@ copyMetadataBtn.addEventListener('click', () => {
       metaDataMessage.textContent = 'Failed to copy metadata';
     });
 });
+
+// sha256 hash
+const selectSha256Mode = document.getElementById('selectSha256Mode');
+const textDiv = document.getElementById('sha256TextInput');
+const fileDiv = document.getElementById('sha256FileUpload');
+const copySha256Btn = document.getElementById('copySha256OutputBtn');
+const sha256Output = document.getElementById('sha256Output');
+
+// mode
+selectSha256Mode.addEventListener('change', () => {
+  if (selectSha256Mode.value === 'file') {
+    textDiv.classList.add('hidden');
+    fileDiv.classList.remove('hidden');
+  } else {
+    textDiv.classList.remove('hidden');
+    fileDiv.classList.add('hidden');
+  }
+});
+
+// hashing
+const sha256HashForm = document.getElementById('sha256HashForm');
+const sha256FileInput = document.getElementById('sha256FileInput');
+
+sha256HashForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData();
+  formData.append('file', sha256FileInput.files[0]);
+
+  const sha256Text = document.getElementById('sha256Text').value;
+
+  const url =
+    selectSha256Mode.value === 'file' ? '/sha256/hashFile' : '/sha256/hashText';
+
+  const options =
+    selectSha256Mode.value === 'file'
+      ? { method: 'POST', body: formData }
+      : {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sha256Text }),
+        };
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) throw new Error('Network response was not ok');
+    const data = await response.json();
+
+    // display hash
+    sha256Output.value = data.computedHash || 'No hash returned';
+  } catch (err) {
+    sha256Output.value = `Error: ${err.message}`;
+  }
+});
+
+// copy sha256 hash
+
+copySha256Btn.addEventListener('click', () => {
+  navigator.clipboard.writeText(sha256Output.value);
+  const original = sha256Output.value;
+  sha256Output.value = 'Copied!';
+  setTimeout(() => (sha256Output.value = original), 1000);
+});
+
+// verify sha256 hash
+const selectSha256VerifyMode = document.getElementById(
+  'selectSha256VerifyMode'
+);
+const textVerifyDiv = document.getElementById('sha256VerifyTextInput');
+const fileVerifyDiv = document.getElementById('sha256VerifyFileUpload');
+const verifyOutput = document.getElementById('sha256VerifyOutput');
+
+// mode toggle
+selectSha256VerifyMode.addEventListener('change', () => {
+  if (selectSha256VerifyMode.value === 'file') {
+    textVerifyDiv.classList.add('hidden');
+    fileVerifyDiv.classList.remove('hidden');
+  } else {
+    textVerifyDiv.classList.remove('hidden');
+    fileVerifyDiv.classList.add('hidden');
+  }
+});
+
+// verification submit
+const sha256VerifyForm = document.getElementById('sha256VerifyForm');
+const verifyFileInput = document.getElementById('verifyFileInput');
+
+sha256VerifyForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  let url, options;
+
+  if (selectSha256VerifyMode.value === 'file') {
+    const formData = new FormData();
+    formData.append('file', verifyFileInput.files[0]);
+    formData.append(
+      'expectedHash',
+      document.getElementById('expectedFileHash').value
+    );
+
+    url = '/sha256/verifyFile';
+    options = { method: 'POST', body: formData };
+  } else {
+    const text = document.getElementById('verifyText').value;
+    const expectedHash = document.getElementById('expectedTextHash').value;
+
+    url = '/sha256/verifyText';
+    options = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, expectedHash }),
+    };
+  }
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) throw new Error('Network response was not ok');
+    const data = await response.json();
+
+    verifyOutput.value = data.valid ? data.message : 'Hash does not match';
+  } catch (err) {
+    verifyOutput.value = `Error: ${err.message}`;
+  }
+});
+
+const pasteVerifySha256TextBtn = document.getElementById(
+  'pasteVerifySha256TextBtn'
+);
+
+const expectedTextHash = document.getElementById('expectedTextHash');
+const expectedFileHash = document.getElementById('expectedFileHash');
+
+const pasteVerifySha256FileBtn = document.getElementById(
+  'pasteVerifySha256FileBtn'
+);
+
+pasteVerifySha256TextBtn.addEventListener('click', async () => {
+  const hash = await navigator.clipboard.readText();
+  expectedTextHash.value = hash;
+});
+pasteVerifySha256FileBtn.addEventListener('click', async () => {
+  const hash = await navigator.clipboard.readText();
+  expectedFileHash.value = hash;
+});

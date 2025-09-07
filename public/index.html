@@ -27,6 +27,8 @@
           <li><a href="#bcrypt-hashing">Secret Hashing</a></li>
           <li><a href="#bcrypt-compare">Compare Secret</a></li>
           <li><a href="#metadata-tool">Metadata Tool</a></li>
+          <li><a href="#sha256-hashing">Sha256 Hash</a></li>
+          <li><a href="#sha256-verification">Sha256 Verify</a></li>
         </ul>
       </nav>
     </header>
@@ -184,6 +186,219 @@
             />
           </svg>
           <textarea id="textOutput">Output will appear here...</textarea>
+        </div>
+      </form>
+    </section>
+
+    <!-- SHA-256 Hashing -->
+    <section id="sha256-hashing">
+      <form id="sha256HashForm" enctype="multipart/form-data">
+        <h2>SHA-256 Hashing</h2>
+        <small>Compute SHA-256 hash for text or file.</small>
+
+        <select name="selectSha256Mode" id="selectSha256Mode">
+          <option value="text">Text</option>
+          <option value="file">File</option>
+        </select>
+
+        <!-- Text Hashing -->
+        <div id="sha256TextInput">
+          <div style="display: inline-block; position: relative; width: 100%">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              width="16px"
+              style="
+                position: absolute;
+                top: 50%;
+                left: 8px;
+                transform: translateY(-50%);
+                color: #888;
+              "
+            >
+              <path
+                d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z"
+              />
+              <path
+                d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z"
+              />
+            </svg>
+            <input
+              type="text"
+              id="sha256Text"
+              name="sha256Text"
+              placeholder="Enter text here"
+            />
+          </div>
+        </div>
+
+        <!-- File Hashing -->
+        <div id="sha256FileUpload" class="hidden">
+          <input type="file" id="sha256FileInput" name="sha256File" />
+        </div>
+
+        <button type="submit">Compute Hash</button>
+
+        <p class="hidden" id="sha256Message"></p>
+
+        <div style="display: inline-block; position: relative">
+          <label for="sha256Output">Output</label>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            id="copySha256OutputBtn"
+            fill="currentColor"
+            width="16px"
+            style="
+              position: absolute;
+              top: 50%;
+              right: 8px;
+              transform: translateY(-50%);
+              color: #4e4e4e;
+              cursor: pointer;
+            "
+          >
+            <path
+              fill-rule="evenodd"
+              d="M13.887 3.182c.396.037.79.08 1.183.128C16.194 3.45 17 4.414 17 5.517V16.75A2.25 2.25 0 0 1 14.75 19h-9.5A2.25 2.25 0 0 1 3 16.75V5.517c0-1.103.806-2.068 1.93-2.207.393-.048.787-.09 1.183-.128A3.001 3.001 0 0 1 9 1h2c1.373 0 2.531.923 2.887 2.182ZM7.5 4A1.5 1.5 0 0 1 9 2.5h2A1.5 1.5 0 0 1 12.5 4v.5h-5V4Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <textarea id="sha256Output">Output will appear here...</textarea>
+        </div>
+      </form>
+    </section>
+
+    <!-- SHA-256 Verification -->
+    <section id="sha256-verification">
+      <form id="sha256VerifyForm" enctype="multipart/form-data">
+        <h2>SHA-256 Verification</h2>
+        <small>Verify a text or file against a known SHA-256 hash.</small>
+
+        <select name="selectSha256VerifyMode" id="selectSha256VerifyMode">
+          <option value="text">Text</option>
+          <option value="file">File</option>
+        </select>
+
+        <!-- Text Verification -->
+        <div id="sha256VerifyTextInput">
+          <div style="display: inline-block; position: relative; width: 100%">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              width="16px"
+              style="
+                position: absolute;
+                top: 50%;
+                left: 8px;
+                transform: translateY(-50%);
+                color: #888;
+              "
+            >
+              <path
+                d="m5.433 13.917 1.262-3.155A4 4 0 0 1 7.58 9.42l6.92-6.918a2.121 2.121 0 0 1 3 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 0 1-.65-.65Z"
+              />
+              <path
+                d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0 0 10 3H4.75A2.75 2.75 0 0 0 2 5.75v9.5A2.75 2.75 0 0 0 4.75 18h9.5A2.75 2.75 0 0 0 17 15.25V10a.75.75 0 0 0-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5Z"
+              />
+            </svg>
+            <input
+              type="text"
+              id="verifyText"
+              name="verifyText"
+              placeholder="Enter text here"
+            />
+          </div>
+          <div
+            style="
+              display: inline-block;
+              position: relative;
+              width: 100%;
+              margin-top: 0.5rem;
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              id="pasteVerifySha256TextBtn"
+              fill="currentColor"
+              width="16px"
+              style="
+                position: absolute;
+                top: 50%;
+                left: 8px;
+                transform: translateY(-50%);
+                color: #4e4e4e;
+                cursor: pointer;
+              "
+            >
+              <path
+                fill-rule="evenodd"
+                d="M13.887 3.182c.396.037.79.08 1.183.128C16.194 3.45 17 4.414 17 5.517V16.75A2.25 2.25 0 0 1 14.75 19h-9.5A2.25 2.25 0 0 1 3 16.75V5.517c0-1.103.806-2.068 1.93-2.207.393-.048.787-.09 1.183-.128A3.001 3.001 0 0 1 9 1h2c1.373 0 2.531.923 2.887 2.182ZM7.5 4A1.5 1.5 0 0 1 9 2.5h2A1.5 1.5 0 0 1 12.5 4v.5h-5V4Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <input
+              type="text"
+              id="expectedTextHash"
+              name="expectedTextHash"
+              placeholder="Paste expected SHA-256 hash"
+            />
+          </div>
+        </div>
+
+        <!-- File Verification -->
+        <div id="sha256VerifyFileUpload" class="hidden">
+          <input type="file" id="verifyFileInput" name="verifyFile" />
+          <div
+            style="
+              display: inline-block;
+              position: relative;
+              width: 100%;
+              margin-top: 0.5rem;
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              id="pasteVerifySha256FileBtn"
+              fill="currentColor"
+              width="16px"
+              style="
+                position: absolute;
+                top: 50%;
+                left: 8px;
+                transform: translateY(-50%);
+                color: #4e4e4e;
+                cursor: pointer;
+              "
+            >
+              <path
+                fill-rule="evenodd"
+                d="M13.887 3.182c.396.037.79.08 1.183.128C16.194 3.45 17 4.414 17 5.517V16.75A2.25 2.25 0 0 1 14.75 19h-9.5A2.25 2.25 0 0 1 3 16.75V5.517c0-1.103.806-2.068 1.93-2.207.393-.048.787-.09 1.183-.128A3.001 3.001 0 0 1 9 1h2c1.373 0 2.531.923 2.887 2.182ZM7.5 4A1.5 1.5 0 0 1 9 2.5h2A1.5 1.5 0 0 1 12.5 4v.5h-5V4Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <input
+              type="text"
+              id="expectedFileHash"
+              name="expectedFileHash"
+              placeholder="Paste expected SHA-256 hash"
+            />
+          </div>
+        </div>
+
+        <button type="submit">Verify Hash</button>
+
+        <p class="hidden" id="sha256VerifyMessage"></p>
+
+        <div style="display: inline-block; position: relative">
+          <label for="sha256VerifyOutput">Result</label>
+          <textarea id="sha256VerifyOutput">
+Verification result will appear here...</textarea
+          >
         </div>
       </form>
     </section>
