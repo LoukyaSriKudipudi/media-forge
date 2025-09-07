@@ -39,7 +39,7 @@
         <h2>File Encryption & Decryption</h2>
         <small>Encrypt any file using AES-256-GCM.</small>
 
-        <label for="fileInput">Upload File</label>
+        <label for="fileInput">Upload File (Max 50 MB)</label>
         <input type="file" id="fileInput" name="fileInput" />
 
         <div
@@ -235,6 +235,8 @@
 
         <!-- File Hashing -->
         <div id="sha256FileUpload" class="hidden">
+          <label for="sha256FileInput">Upload File (Max 50 MB)</label>
+
           <input type="file" id="sha256FileInput" name="sha256File" />
         </div>
 
@@ -351,6 +353,8 @@
 
         <!-- File Verification -->
         <div id="sha256VerifyFileUpload" class="hidden">
+          <label for="verifyFileInput">Upload File (Max 50 MB)</label>
+
           <input type="file" id="verifyFileInput" name="verifyFile" />
           <div
             style="
@@ -563,7 +567,7 @@ Hashed secret will appear here...</textarea
         <h2>Metadata Tool</h2>
         <small>Read or remove metadata of any file.</small>
 
-        <label for="metadataFileInput">Upload file</label>
+        <label for="metadataFileInput">Upload File (Max 50 MB)</label>
         <input type="file" id="metadataFileInput" name="metadataFileInput" />
         <p class="hidden" id="metaDataMessage"></p>
 
