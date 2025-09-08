@@ -615,6 +615,7 @@ Hashed secret will appear here...</textarea
         setTimeout(() => (bcryptOutput.value = original), 1000);
       });
 
+      // menu
       const hamburgerBtn = document.getElementById('hamburgerBtn');
       const mainNav = document.getElementById('mainNav');
 
@@ -624,7 +625,7 @@ Hashed secret will appear here...</textarea
 
       document.addEventListener('click', (e) => {
         if (!mainNav.contains(e.target) && !hamburgerBtn.contains(e.target)) {
-          mainNav.classList.toggle('active');
+          mainNav.classList.remove('active');
         }
       });
 
