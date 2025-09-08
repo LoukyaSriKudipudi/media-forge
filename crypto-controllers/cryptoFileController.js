@@ -1,4 +1,4 @@
-const { encryptFile, decryptFile } = require('../utilis/crypto-file');
+const { encryptFile, decryptFile } = require('../utilis/aes256gcmFile');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const bot = require('../utilis/telegram-bot');

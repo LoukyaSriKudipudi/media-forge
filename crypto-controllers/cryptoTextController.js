@@ -1,4 +1,4 @@
-const { encryptText, decryptText } = require('../utilis/crypto-text');
+const { encryptText, decryptText } = require('../utilis/aes256gcmText');
 const bot = require('../utilis/telegram-bot');
 
 exports.encryptText = async (req, res) => {

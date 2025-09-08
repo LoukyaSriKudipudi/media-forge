@@ -1,6 +1,7 @@
 const app = require('./app');
 const chalk = require('chalk');
 require('./utilis/cleaner');
+require('./utilis/argon2KDF');
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
