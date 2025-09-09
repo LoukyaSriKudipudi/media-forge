@@ -25,6 +25,7 @@
     "fs-extra": "^11.3.1",
     "multer": "^2.0.2",
     "nanoid": "^5.1.5",
+    "node-cron": "^4.2.1",
     "node-downloader-helper": "^2.1.9",
     "play-dl": "^1.9.7",
     "telegraf": "^4.16.3",
